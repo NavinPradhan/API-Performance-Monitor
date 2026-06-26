@@ -24,11 +24,11 @@ API Performance Monitor is a Python-based application that tracks API performanc
 
 API-Monitor/
 │
-├── app.py
-├── monitor.py
-├── database.py
-├── api_monitor.db
-└── README.md
+── app.py
+── monitor.py
+── database.py
+── api_monitor.db
+── README.md
 
 ## How to Run
 
