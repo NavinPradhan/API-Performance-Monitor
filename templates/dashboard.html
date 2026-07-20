@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>API Monitor Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 2rem;
+            background: #f5f7fb;
+            color: #233;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 0.7rem;
+            border-bottom: 1px solid #e5e7eb;
+            text-align: left;
+        }
+
+        th {
+            background: #f8fafc;
+        }
+
+        .pill {
+            display: inline-block;
+            padding: 0.3rem 0.6rem;
+            border-radius: 999px;
+            background: #e0f2fe;
+            color: #075985;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>API Monitor Dashboard</h1>
+    <div class="card">
+        <h2>Summary</h2>
+        <p><strong>Total requests:</strong> {{ summary.total_requests }}</p>
+        <p><strong>Average response time:</strong> {{ summary.average_response_time }} sec</p>
+    </div>
+
+    <div class="card">
+        <h2>Recent Requests</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Timestamp</th>
+                    <th>Response Time</th>
+                    <th>Status Code</th>
+                    <th>URL</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in rows %}
+                <tr>
+                    <td>{{ row["id"] }}</td>
+                    <td>{{ row["timestamp"] }}</td>
+                    <td>{{ row["response_time"] }}</td>
+                    <td><span class="pill">{{ row["status_code"] }}</span></td>
+                    <td>{{ row["url"] }}</td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="5">No requests recorded yet.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
